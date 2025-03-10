@@ -11,8 +11,8 @@ usuarioCtrl.getUsu = async (req, res) => { //Este es para todos los usuarios
     const usuariosConFoto = usuarios.map(usuario => ({
       ...usuario._doc,
       foto: usuario.foto
-        ? `https://proyecto-cliente-mern.onrender.com/img/${usuario.foto}`
-        : `https://proyecto-cliente-mern.onrender.com/img/noFoto.png`, // Imagen por defecto si no hay foto
+        ? `https://proyecto-mern-2.onrender.com/img/${usuario.foto}`
+        : `https://proyecto-mern-2.onrender.com/img/noFoto.png`, // Imagen por defecto si no hay foto
     }));
     res.json(usuariosConFoto);
   } catch (error) {

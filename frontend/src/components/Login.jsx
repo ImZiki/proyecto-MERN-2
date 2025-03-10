@@ -12,7 +12,7 @@ function Login() {
     setError(null); // Limpiar errores previos
 
     try {
-      const res = await fetch('https://proyecto-mern-2.onrender.com/api/usuarios/login', {
+      const res = await fetch('http://proyecto-mern-2.onrender.com/api/usuarios/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ correo, password })

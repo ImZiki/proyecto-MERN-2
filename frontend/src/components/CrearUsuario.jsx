@@ -53,7 +53,7 @@ const CrearUsuario = () => {
 
     try {
       // Enviar datos al backend
-      await axios.post('https://proyecto-mern-2-a9zx.onrender.com/api/usuarios', formData, {
+      await axios.post('http://proyecto-mern-2-a9zx.onrender.com/api/usuarios', formData, {
         headers: {
           'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido
         }
@@ -88,7 +88,7 @@ const CrearUsuario = () => {
 
     try {
       // Enviar datos al backend
-      await axios.put(`https://proyecto-mern-2.onrender.com/api/usuarios/${subId}`, formData, {
+      await axios.put(`http://proyecto-mern-2.onrender.com/api/usuarios/${subId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data' // Especificar el tipo de contenido
         }

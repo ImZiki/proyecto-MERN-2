@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Configuración de CORS más permisiva para depuración
-app.use(cors());
+
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

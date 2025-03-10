@@ -56,6 +56,7 @@ router.post('/login', async (req, res) => {
     );
 
     res.json({ mensaje: 'Login exitoso', token });
+    res.redirect('/');
   } catch (error) {
     res.status(500).json({ mensaje: 'Error en el servidor', error });
   }

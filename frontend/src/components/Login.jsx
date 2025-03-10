@@ -8,7 +8,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('https://proyecto-mern-2-1.onrender.com/api/usuarios/login', {
+    const res = await fetch('https://proyecto-mern-2.onrender.com/api/usuarios/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ correo, password })

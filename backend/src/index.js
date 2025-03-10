@@ -5,7 +5,10 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://proyecto-mern-2.onrender.com',  // Aquí va el dominio de tu frontend
+}));
+app.options('*', cors());
 
 // Conectar a MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {

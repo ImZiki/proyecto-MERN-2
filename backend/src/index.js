@@ -6,24 +6,9 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 
-// Configuración CORS con origen específico para producción y desarrollo
-const allowedOrigins = [
-  'https://proyecto-mern-2.onrender.com',  // Dominio en producción
-  'http://localhost:3000', // Dominio en desarrollo
-];
+// Configuración de CORS más permisiva para depuración
+app.use(cors());
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      // Permite solicitudes desde el dominio o desde localhost
-      callback(null, true);
-    } else {
-      callback(new Error('CORS no permitido por esta política.'));
-    }
-  },
-}));
-
-// Conectar a MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true

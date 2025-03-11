@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-
+import { navigate } from 'react-router-dom';
 
 const Navegacion = () => {
 
@@ -17,7 +17,7 @@ const Navegacion = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <Link className="navbar-brand d-flex align-items-center" to="/">
-            HOME
+            Inicio
           </Link>
           <button
             className="navbar-toggler"

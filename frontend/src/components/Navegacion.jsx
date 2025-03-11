@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Cambio aquí
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { navigate } from 'react-router-dom';
 
 const Navegacion = () => {
+  const navigate = useNavigate(); // Usa el hook aquí
 
   const handleLogout = () => {
     localStorage.removeItem('token'); // Eliminar el token
@@ -57,6 +57,5 @@ const Navegacion = () => {
     </div>
   );
 }
-
 
 export default Navegacion;

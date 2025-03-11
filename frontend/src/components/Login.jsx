@@ -1,71 +1,43 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+const Login = () => {
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
+
+  const urlBack = "https://proyecto-mern-2-a9zx.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Limpiar errores previos
-
     try {
-      const res = await fetch('http://proyecto-mern-2.onrender.com/api/usuarios/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo, password })
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.mensaje || 'Error en el inicio de sesión');
-      }
-
-      // Guardar el token en localStorage
-      localStorage.setItem('token', data.token);
-
-      // Redirigir después de 1 segundo (opcional, para mejor UX)
-      setTimeout(() => {
-        navigate('/');
-      }, 1000);
-
-    } catch (err) {
-      setError(err.message);
+      const response = await axios.post(`${urlBack}/api/usuarios/login`, { correo, password });
+      localStorage.setItem('token', response.data.token);
+      navigate('/usuarios'); // Redirigir a la lista de usuarios
+    } catch (error) {
+      setMessage(error.response.data.message);
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Iniciar Sesión</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
+    <div>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Correo:</label>
-          <input 
-            type="email" 
-            className="form-control" 
-            value={correo} 
-            onChange={(e) => setCorreo(e.target.value)} 
-            required 
-          />
+        <div>
+          <label>Correo:</label>
+          <input type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
         </div>
-        <div className="mb-3">
-          <label className="form-label">Contraseña:</label>
-          <input 
-            type="password" 
-            className="form-control" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
+        <div>
+          <label>Contraseña:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button type="submit" className="btn btn-primary">Ingresar</button>
+        <button type="submit">Login</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
-}
+};
 
 export default Login;

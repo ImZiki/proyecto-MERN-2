@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 
 const ListaUsuario = () => {
   const [lista, setLista] = useState([]);
-
+  const urlBack = "https://proyecto-mern-2-a9zx.onrender.com";
 
   useEffect(() => {
     const getUsuarios = async () => {
-      const res = await axios.get("http://proyecto-mern-2.onrender.com/api/usuarios");
+      const res = await axios.get(`${urlBack}/api/usuarios`);
       setLista(res.data);
     };
     getUsuarios();
@@ -17,7 +17,7 @@ const ListaUsuario = () => {
 
 
   const eliminarUsario = async (id) => {
-    await axios.delete(`http://proyecto-mern-2.onrender.com/api/usuarios/${id}`);
+    await axios.delete(`${urlBack}/api/usuarios/${id}`);
     // Actualizar la lista de usuarios después de eliminar uno
     setLista(lista.filter(usuario => usuario._id !== id));
   };
@@ -42,10 +42,8 @@ const ListaUsuario = () => {
               </h5>
             </div>
             <div className="card-body">
-              <p>Apellidos: {list.apellido}</p>
-              <p>Edad: {list.edad}</p>
-              <p>Teléfono: {list.telefono}</p>
               <p>Correo: {list.correo}</p>
+              <p>password: {list.password}</p>
             </div>
             <div className="card-footer text-center">
               <button className="btn btn-dark mx-1" onClick={() => eliminarUsario(list._id)}>

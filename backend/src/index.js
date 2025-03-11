@@ -1,25 +1,19 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-// Configuración de CORS más permisiva para depuración
+require('dotenv').config(); // Esto debe ser lo primero para que luego cuando siga corriendo el código entienda QUÉ variables y qué valores hay
 
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ Conectado a MongoDB Atlas'))
-.catch(err => console.error('❌ Error al conectar a MongoDB:', err));
+const app = require('./app'); //Saco de app, lo que hemos creado allí en esa variable
+require('./database');
 
-app.use('/api/usuarios', require('./routes/usuario'));
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
-});
+// Ejecutamos el servidor
+async function main() {
+    try {
+        await app.listen(app.get('port'));
+        console.log('El servidor se está escuchando en el puerto:', app.get('port'));
+    } catch (error) {
+        console.error('Error al iniciar el servidor:', error.message);
+    }
+}
+
+
+main();

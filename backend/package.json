@@ -1,29 +1,28 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon node ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
   },
   "keywords": [],
-  "author": "Ernesto Vázquez",
+  "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "description": "Código para enseñar un MERN stack sencillo",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.4",
-    "multer": "^1.4.5-lts.1"
+    "mongoose": "^8.9.6",
+    "multer": "^1.4.5-lts.1",
+    "react-router-dom": "^7.2.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "nodemon": "^3.1.9"
   }
 }
